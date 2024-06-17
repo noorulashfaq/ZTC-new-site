@@ -1,0 +1,11 @@
+/* Example in App.css or index.css */
+@font-face {
+  font-family: "Usuzi";
+  src: url("../font/usuzi.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Usuzi", sans-serif;
+}
