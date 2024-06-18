@@ -132,14 +132,20 @@ const campus = [
 const CampusCard = () => {
   return (
     <section
-      className="contact-section"
+      className="campus-section"
       style={{
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)', // Gradient background
-        paddingTop: '3%',
-        paddingBottom: '5%',
+        background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)", // Gradient background
+        paddingTop: "3%",
+        paddingBottom: "5%",
       }}
     >
-      <Card elevation={0} sx={{ padding: "2%", background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
+      <Card
+        elevation={0}
+        sx={{
+          padding: "2%",
+          background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+        }}
+      >
         <CardHeader
           title="CAMPUSES WHERE OUR TRAINERS WORKED"
           sx={{ textAlign: "center", color: "#0c83c8", fontSize: "1.5rem" }}

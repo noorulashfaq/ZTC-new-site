@@ -6,6 +6,11 @@ import {
   TextField,
   Typography,
   Paper,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@mui/material";
 import emailjs from "emailjs-com";
 
@@ -17,46 +22,107 @@ const Contact = () => {
     message: "",
   });
 
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMessage, setDialogMessage] = useState("");
+
+  const validate = () => {
+    let tempErrors = { name: "", email: "", phone: "", message: "" };
+    let isValid = true;
+
+    if (!formData.name) {
+      tempErrors.name = "Name is required.";
+      isValid = false;
+    }
+
+    if (!formData.email) {
+      tempErrors.email = "Email is required.";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      tempErrors.email = "Email is not valid.";
+      isValid = false;
+    }
+
+    if (!formData.phone) {
+      tempErrors.phone = "Phone number is required.";
+      isValid = false;
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      tempErrors.phone = "Phone number is not valid.";
+      isValid = false;
+    }
+
+    if (!formData.message) {
+      tempErrors.message = "Message is required.";
+      isValid = false;
+    }
+
+    setErrors(tempErrors);
+    return isValid;
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    emailjs
-      .send(
-        "service_r95amrr",
-        "template_dlxisr9",
-        formData,
-        "4C6XK5WEB_pj_W4Y1"
-      )
-      .then(
-        (response) => {
-          console.log("Email sent successfully:", response);
-          alert("Email sent successfully!");
-          window.location.assign("/");
-        },
-        (error) => {
-          console.error("Error sending email:", error);
-          alert("Failed to send email. Please try again later.");
-        }
-      );
+    if (validate()) {
+      console.log(formData);
+      emailjs
+        .send(
+          "service_r95amrr",
+          "template_dlxisr9",
+          formData,
+          "4C6XK5WEB_pj_W4Y1"
+        )
+        .then(
+          (response) => {
+            console.log("Email sent successfully:", response);
+            setDialogMessage("Email sent successfully!");
+            setDialogOpen(true);
+          },
+          (error) => {
+            console.error("Error sending email:", error);
+            setDialogMessage("Failed to send email. Please try again later.");
+            setDialogOpen(true);
+          }
+        );
+    }
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+    if (dialogMessage === "Email sent successfully!") {
+      window.location.assign("/");
+    }
   };
 
   return (
     <section
       className="contacts-section"
       style={{
-        background: 'linear-gradient( #fc7a46 0%, #0c83c8 100%)', // Gradient background
-        paddingTop: '5%',
-        paddingBottom: '5%',
+        background: "linear-gradient( #fc7a46 0%, #0c83c8 100%)", // Gradient background
+        paddingTop: "5%",
+        paddingBottom: "5%",
       }}
     >
       <Container>
         <Grid container justifyContent="center">
           <Grid item xs={12} md={6}>
-            <Paper elevation={3} sx={{ padding: "2rem", backgroundColor: "#ffffff", border: "2px solid #fc7a46" }}>
+            <Paper
+              elevation={3}
+              sx={{
+                padding: "2rem",
+                backgroundColor: "#ffffff",
+                border: "2px solid #fc7a46",
+              }}
+            >
               <Typography
                 variant="h4"
                 align="center"
@@ -89,6 +155,8 @@ const Contact = () => {
                   InputProps={{
                     style: { backgroundColor: "#ffffff" },
                   }}
+                  error={!!errors.name}
+                  helperText={errors.name}
                 />
                 <TextField
                   fullWidth
@@ -106,6 +174,8 @@ const Contact = () => {
                   InputProps={{
                     style: { backgroundColor: "#ffffff" },
                   }}
+                  error={!!errors.email}
+                  helperText={errors.email}
                 />
                 <TextField
                   fullWidth
@@ -123,6 +193,8 @@ const Contact = () => {
                   InputProps={{
                     style: { backgroundColor: "#ffffff" },
                   }}
+                  error={!!errors.phone}
+                  helperText={errors.phone}
                 />
                 <TextField
                   fullWidth
@@ -141,6 +213,8 @@ const Contact = () => {
                   InputProps={{
                     style: { backgroundColor: "#ffffff" },
                   }}
+                  error={!!errors.message}
+                  helperText={errors.message}
                 />
                 <Button
                   type="submit"
@@ -155,6 +229,25 @@ const Contact = () => {
           </Grid>
         </Grid>
       </Container>
+
+      <Dialog
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Contact Form"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {dialogMessage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </section>
   );
 };
