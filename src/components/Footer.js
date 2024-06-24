@@ -9,7 +9,7 @@ const Footer = () => {
     <footer style={{ background: "#0c83c8", color: "white", padding: "2%" }}>
       <Container>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={4} lg={4}>
+          <Grid item xs={6} md={4} lg={4} >
             <Typography variant="h6" gutterBottom>
               Get to Know Us
             </Typography>
@@ -87,53 +87,22 @@ const Footer = () => {
             </ul>
           </Grid>
 
-          {/* Column 2 */}
-          <Grid item xs={12} md={4} lg={4}>
-            <Typography variant="h6" gutterBottom>
-              Let Us Help You
-            </Typography>
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              <li>
-                <Link
-                  href="#"
-                  style={{
-                    color: "white",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Your Account
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  style={{
-                    color: "white",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Returns Centre
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  style={{
-                    color: "white",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Help
-                </Link>
-              </li>
-            </ul>
+          {/* Google Maps */}
+          {/* <Grid container justifyContent="center" style={{ marginTop: "2rem" }}> */}
+          <Grid item xs={6} md={4} lg={4} style={{ height: "300px" }}>
+            <Iframe
+              url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2335.781567728469!2d78.13936371360762!3d11.669799415509564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf04680edbe0f%3A0xcb56c889044c2542!2sZealous%20Academy%20of%20Career%20Training!5e0!3m2!1sen!2sin!4v1711376005021!5m2!1sen!2sin"
+              width="70%"
+              height="70%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </Grid>
+          {/* </Grid> */}
 
-          {/* Column 3 */}
-          <Grid item xs={12} md={4} lg={4}>
+          <Grid item xs={12} md={4} lg={4} >
             <Typography variant="h6" gutterBottom>
               Connect with Us
             </Typography>
@@ -166,27 +135,11 @@ const Footer = () => {
           </Grid>
         </Grid>
 
-        {/* Google Maps */}
-        <Grid container justifyContent="center" style={{ marginTop: "2rem" }}>
-          <Grid item xs={12} style={{ height: "300px" }}>
-            <Iframe
-              url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2335.781567728469!2d78.13936371360762!3d11.669799415509564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3babf04680edbe0f%3A0xcb56c889044c2542!2sZealous%20Academy%20of%20Career%20Training!5e0!3m2!1sen!2sin!4v1711376005021!5m2!1sen!2sin"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </Grid>
-        </Grid>
-
         {/* Secondary footer */}
         <Grid
           container
           justifyContent="space-between"
           alignItems="center"
-          style={{ marginTop: "2rem" }}
         >
           <Grid item xs={12} md={6}>
             <Typography variant="body2" align="left" style={{ color: "white" }}>

@@ -147,7 +147,7 @@ const CampusCard = () => {
         }}
       >
         <CardHeader
-          title="CAMPUSES WHERE OUR TRAINERS WORKED"
+          title="CAMPUSES WHERE OUR EXPERTS WORKED"
           sx={{ textAlign: "center", color: "#0c83c8", fontSize: "1.5rem" }}
         />
         <Grid container spacing={4}>

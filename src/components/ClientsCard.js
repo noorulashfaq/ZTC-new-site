@@ -45,7 +45,7 @@ const ClientsCard = () => {
     <section className="clients-section">
       <Card elevation={0} sx={{ marginTop: "5%", padding: "2%" }}>
         <CardHeader
-          title="OUR CLIENTS"
+          title="WHERE OUR RESOURCES WORKED"
           sx={{ textAlign: "center", color: "#fc7a46", fontSize: "1.5rem" }}
         />
         <Grid container spacing={4}>
@@ -54,18 +54,23 @@ const ClientsCard = () => {
               <Paper
                 elevation={0}
                 sx={{
-                    backgroundColor: "none",
-                    padding: "1rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    minHeight: "150px",
-                    textAlign: "center",
+                  backgroundColor: "none",
+                  padding: "1rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: "150px",
+                  textAlign: "center",
                 }}
               >
                 <img
-                  style={{ width: "100%", maxWidth: "70px", maxHeight: "50px", marginBottom: "1rem" }}
+                  style={{
+                    width: "100%",
+                    maxWidth: "70px",
+                    maxHeight: "50px",
+                    marginBottom: "1rem",
+                  }}
                   src={client.logo}
                   alt={client.name}
                 />
