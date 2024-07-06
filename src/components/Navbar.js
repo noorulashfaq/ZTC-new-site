@@ -12,10 +12,13 @@ import {
   useTheme,
   Container,
   CssBaseline,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { Link } from "react-scroll";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import zealous from "../Images/Zealous.png";
 
 function Navigation() {
@@ -23,6 +26,7 @@ function Navigation() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
@@ -39,12 +43,23 @@ function Navigation() {
   const navLinks = [
     { to: "home-section", label: "Home" },
     { to: "about-section", label: "About" },
-    { to: "services-section", label: "Services" },
-    { to: "training-section", label: "Technology" },
-    { to: "campus-section", label: "Campus" },
     { to: "clients-section", label: "Clients" },
     { to: "contacts-section", label: "Contact" },
   ];
+
+  const submenuLinks = [
+    { to: "services-section", label: "Services" },
+    { to: "training-section", label: "Technology" },
+    { to: "campus-section", label: "Campus" },
+  ];
+
+  const handleSubMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleSubMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   const renderNavLinks = () => (
     <>
@@ -62,6 +77,93 @@ function Navigation() {
           {link.label} &nbsp;
         </Link>
       ))}
+      <Typography
+        onClick={handleSubMenuOpen}
+        style={{ cursor: "pointer", color: "#0c83c8", display: "inline-flex", alignItems: "center" }}
+      >
+        More <ArrowDropDownIcon />
+      </Typography>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleSubMenuClose}
+        MenuListProps={{
+          style: { backgroundColor: "#ffffff", color: "#0c83c8" },
+        }}
+      >
+        {submenuLinks.map((link, index) => (
+          <Link
+            key={index}
+            to={link.to}
+            duration={1000}
+            className="nav-link"
+            style={{ cursor: "pointer", color: "#0c83c8" }}
+            spy={true}
+            smooth={true}
+            onClick={() => {
+              setDrawerOpen(false);
+              handleSubMenuClose();
+            }} // Close drawer and submenu when a link is clicked
+          >
+            <MenuItem sx={{ backgroundColor: "#ffffff", color: "#0c83c8" }}>
+              {link.label}
+            </MenuItem>
+          </Link>
+        ))}
+      </Menu>
+    </>
+  );
+
+  const renderDrawerLinks = () => (
+    <>
+      {navLinks.map((link, index) => (
+        <Link
+          key={index}
+          to={link.to}
+          duration={2000}
+          className="nav-link"
+          style={{ cursor: "pointer", color: "#ffffff" }}
+          spy={true}
+          smooth={true}
+          onClick={() => setDrawerOpen(false)} // Close drawer when a link is clicked
+        >
+          <ListItem button sx={{ color: "#ffffff", cursor: "pointer" }}>
+            <ListItemText primary={link.label} />
+          </ListItem>
+        </Link>
+      ))}
+      <ListItem button sx={{ color: "#ffffff", cursor: "pointer" }} onClick={handleSubMenuOpen}>
+        <ListItemText primary="More" />
+        <ArrowDropDownIcon />
+      </ListItem>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleSubMenuClose}
+        MenuListProps={{
+          style: { backgroundColor: "#0c83c8", color: "#ffffff" },
+        }}
+      >
+        {submenuLinks.map((link, index) => (
+          <Link
+            key={index}
+            to={link.to}
+            duration={2000}
+            className="nav-link"
+            style={{ cursor: "pointer", color: "#ffffff" }}
+            spy={true}
+            smooth={true}
+            onClick={() => {
+              setDrawerOpen(false);
+              handleSubMenuClose();
+            }} // Close drawer and submenu when a link is clicked
+          >
+            <MenuItem sx={{ backgroundColor: "#0c83c8", color: "#ffffff" }}>
+              {link.label}
+            </MenuItem>
+          </Link>
+        ))}
+      </Menu>
     </>
   );
 
@@ -116,22 +218,7 @@ function Navigation() {
           }}
         >
           <List>
-            {navLinks.map((link, index) => (
-              <Link
-                key={index}
-                to={link.to}
-                duration={2000}
-                className="nav-link"
-                style={{ cursor: "pointer", color: "#ffffff" }}
-                spy={true}
-                smooth={true}
-                onClick={() => setDrawerOpen(false)} // Close drawer when a link is clicked
-              >
-                <ListItem button sx={{ color: "#ffffff", cursor: "pointer" }}>
-                  <ListItemText primary={link.label} />
-                </ListItem>
-              </Link>
-            ))}
+            {renderDrawerLinks()}
           </List>
         </div>
       </Drawer>
