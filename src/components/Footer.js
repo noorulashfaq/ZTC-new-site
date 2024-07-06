@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Typography, Link, IconButton } from "@mui/material";
+import { Container, Grid, Typography, IconButton } from "@mui/material";
 import { Facebook, LinkedIn, Instagram } from "@mui/icons-material";
 import { Link as ScrollLink } from "react-scroll";
 import Iframe from "react-iframe";
