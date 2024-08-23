@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, Box, Grid, Avatar, Paper } from "@mui/material";
+import { Container, Typography, Box, Grid, Paper } from "@mui/material";
 
 const teamMembers = [
   {
