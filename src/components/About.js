@@ -1,25 +1,21 @@
 import React from "react";
 import { Container, Typography, Box, Grid, Avatar, Paper } from "@mui/material";
-import Employee1 from "../Images/Employee1.png";
 
 const teamMembers = [
   {
     name: "RAZAK MOHAMED S",
     title: "FOUNDER & HEAD OF",
     title2: "TALENT DEVELOPMENT",
-    image: Employee1,
   },
   {
     name: "RASHEEDHA R",
     title: "OPERATIONS",
     title2: "HEAD",
-    image: Employee1,
   },
   {
     name: "ANNAMALAI",
     title: "DEVELOPMENT",
     title2: "MANAGER",
-    image: Employee1,
   },
 ];
 
@@ -113,7 +109,7 @@ const About = () => {
               gutterBottom
               sx={{ color: "#fc7a46" }}
             >
-              Meet Our Team
+              Know Our Team
             </Typography>
             <Grid container spacing={4} justifyContent="center">
               {teamMembers.map((member, index) => (
@@ -126,11 +122,11 @@ const About = () => {
                       borderRadius: 2,
                     }}
                   >
-                    <Avatar
+                    {/* <Avatar
                       src={member.image}
                       alt={member.name}
                       sx={{ width: 150, height: 150, mx: "auto" }}
-                    />
+                    /> */}
                     <Typography variant="h6" sx={{ mt: 2, color: "#0c83c8" }}>
                       {member.name}
                     </Typography>

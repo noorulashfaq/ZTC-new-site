@@ -42,7 +42,7 @@ const Home = () => {
               size="large"
               style={{ backgroundColor: "#fc7a46", color: "#fff", padding: "10px 20px" }}
             >
-              <Link to="contact-section" smooth={true} duration={5000} style={{ textDecoration: "none", color: "inherit" }}>
+              <Link to="contacts-section" smooth={true} duration={2000} style={{ textDecoration: "none", color: "inherit" }}>
                 Reach Us
               </Link>
             </Button>
